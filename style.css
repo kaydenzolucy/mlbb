@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", monospace;
+}
+
+body {
+  background: radial-gradient(circle at top, #0a0f1f, #000);
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  color: cyan;
+  margin-bottom: 20px;
+}
+
+.glitch {
+  position: relative;
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0% { text-shadow: 2px 0 cyan; }
+  50% { text-shadow: -2px 0 magenta; }
+  100% { text-shadow: 2px 0 cyan; }
+}
+
+.menu button {
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
+  background: linear-gradient(90deg, #00ffff, #9b00ff);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.section {
+  display: none;
+  margin-top: 20px;
+}
+
+.section h2 {
+  color: #9bffff;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  background: #0f1a2f;
+  border: 1px solid cyan;
+  color: #fff;
+  border-radius: 6px;
+}
+
+textarea {
+  height: 80px;
+}
+
+button {
+  background: cyan;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.result {
+  margin-top: 12px;
+  color: #00ff9c;
+  white-space: pre-line;
+}
