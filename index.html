@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>MLBB Cyber Toolkit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1 class="glitch" data-text="MLBB CYBER TOOLKIT">MLBB CYBER TOOLKIT</h1>
+
+  <div class="menu">
+    <button onclick="showSection('wr')">⚙ Hitung Menang & Kalah</button>
+    <button onclick="showSection('target')">🎯 Target Winrate</button>
+    <button onclick="showSection('hero')">🎮 Random Hero</button>
+  </div>
+
+  <!-- HITUNG MENANG KALAH -->
+  <div class="section" id="wr">
+    <h2>Hitung Menang & Kalah</h2>
+    <input type="number" id="wrInput" placeholder="Winrate (%)">
+    <input type="number" id="matchInput" placeholder="Total Match">
+    <button onclick="hitungWR()">Hitung</button>
+    <div class="result" id="wrResult"></div>
+  </div>
+
+  <!-- TARGET WR -->
+  <div class="section" id="target">
+    <h2>Target Winrate</h2>
+    <input type="number" id="wrNow" placeholder="WR Sekarang (%)">
+    <input type="number" id="matchNow" placeholder="Total Match">
+    <input type="number" id="wrTarget" placeholder="WR Target (%)">
+    <button onclick="targetWR()">Hitung</button>
+    <div class="result" id="targetResult"></div>
+  </div>
+
+  <!-- RANDOM HERO -->
+  <div class="section" id="hero">
+    <h2>Random Hero MLBB</h2>
+
+    <select id="role">
+      <option value="all">All Hero</option>
+      <option value="tank">Tank</option>
+      <option value="fighter">Fighter</option>
+      <option value="assassin">Assassin</option>
+      <option value="mage">Mage</option>
+      <option value="marksman">Marksman</option>
+      <option value="support">Support</option>
+    </select>
+
+    <textarea id="players" placeholder="Nama pemain (1 per baris)"></textarea>
+    <button onclick="randomHero()">Acak Hero</button>
+    <div class="result" id="heroResult"></div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
