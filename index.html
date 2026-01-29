@@ -10,6 +10,7 @@
 
 <div class="container">
   <h1 class="glitch" data-text="MLBB CYBER TOOLKIT">MLBB CYBER TOOLKIT</h1>
+  <p class="subtitle">⚡ Cyber Retro Gaming Tool ⚡</p>
 
   <div class="menu">
     <button onclick="showSection('wr')">⚙ Hitung Menang & Kalah</button>
@@ -19,16 +20,16 @@
 
   <!-- HITUNG MENANG KALAH -->
   <div class="section" id="wr">
-    <h2>Hitung Menang & Kalah</h2>
+    <h2>⚙ Hitung Menang & Kalah</h2>
     <input type="number" id="wrInput" placeholder="Winrate (%)">
     <input type="number" id="matchInput" placeholder="Total Match">
     <button onclick="hitungWR()">Hitung</button>
     <div class="result" id="wrResult"></div>
   </div>
 
-  <!-- TARGET WR -->
+  <!-- TARGET WINRATE -->
   <div class="section" id="target">
-    <h2>Target Winrate</h2>
+    <h2>🎯 Target Winrate</h2>
     <input type="number" id="wrNow" placeholder="WR Sekarang (%)">
     <input type="number" id="matchNow" placeholder="Total Match">
     <input type="number" id="wrTarget" placeholder="WR Target (%)">
@@ -38,7 +39,7 @@
 
   <!-- RANDOM HERO -->
   <div class="section" id="hero">
-    <h2>Random Hero MLBB</h2>
+    <h2>🎮 Random Hero MLBB</h2>
 
     <select id="role">
       <option value="all">All Hero</option>
@@ -50,8 +51,8 @@
       <option value="support">Support</option>
     </select>
 
-    <textarea id="players" placeholder="Nama pemain (1 per baris)"></textarea>
-    <button onclick="randomHero()">Acak Hero</button>
+    <textarea id="players" placeholder="Nama pemain (1 per baris)&#10;contoh:&#10;Kayden&#10;Asep&#10;Budi"></textarea>
+    <button onclick="randomHero()">🎰 Generate Hero</button>
     <div class="result" id="heroResult"></div>
   </div>
 
