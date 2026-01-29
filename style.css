@@ -4,26 +4,40 @@
 }
 
 body {
-  background: radial-gradient(circle at top, #0a0f1f, #000);
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(0,255,255,0.03) 0px,
+      rgba(0,255,255,0.03) 1px,
+      transparent 2px,
+      transparent 4px
+    ),
+    radial-gradient(circle at top, #0a0f1f, #000);
   color: #fff;
   margin: 0;
   padding: 20px;
 }
 
 .container {
-  max-width: 500px;
+  max-width: 520px;
   margin: auto;
   text-align: center;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 30px;
   color: cyan;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: #9bffff;
   margin-bottom: 20px;
+  letter-spacing: 2px;
 }
 
 .glitch {
-  position: relative;
   animation: flicker 2s infinite;
 }
 
@@ -48,6 +62,11 @@ h1 {
 .section {
   display: none;
   margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(5,10,25,0.65);
+  border: 1px solid rgba(0,255,255,0.3);
+  box-shadow: 0 0 15px rgba(0,255,255,0.2);
 }
 
 .section h2 {
@@ -65,7 +84,7 @@ input, textarea, select {
 }
 
 textarea {
-  height: 80px;
+  height: 90px;
 }
 
 button {
@@ -78,7 +97,16 @@ button {
 }
 
 .result {
-  margin-top: 12px;
+  margin-top: 14px;
   color: #00ff9c;
   white-space: pre-line;
+  font-family: monospace;
+  text-shadow: 0 0 6px #00ff9c;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
 }
