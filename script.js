@@ -96,9 +96,7 @@ function targetWR() {
 function randomHero() {
   const role = document.getElementById("role").value;
   const players = document.getElementById("players").value
-    .split("\n")
-    .map(p => p.trim())
-    .filter(Boolean);
+    .split("\n").map(p => p.trim()).filter(Boolean);
 
   const result = document.getElementById("heroResult");
 
@@ -109,7 +107,7 @@ function randomHero() {
     pool = [...roles[role]];
   }
 
-  if (players.length === 0) {
+  if (!players.length) {
     result.innerText = "❌ Masukkan nama pemain";
     return;
   }
@@ -121,47 +119,46 @@ function randomHero() {
 
   pool.sort(() => Math.random() - 0.5);
 
+  let assigned = [];
+  let index = 0;
+
   result.innerText = "⚙ GENERATING HERO...\n\n";
 
-  let index = 0;
-  let progress = 0;
-  const assigned = [];
-
-  function typeLine(text, cb) {
-    let i = 0;
-    function typing() {
-      if (i < text.length) {
-        result.innerText += text.charAt(i);
-        i++;
-        setTimeout(typing, 18);
-      } else {
-        result.innerText += "\n";
-        if (cb) cb();
-      }
-    }
-    typing();
-  }
-
-  function progressBar() {
-    let bar = "█".repeat(progress / 10) + "▓".repeat(10 - progress / 10);
-    return `${bar} ${progress}%`;
-  }
-
-  function generateNext() {
+  function spinPlayer() {
     if (index >= players.length) {
-      result.innerText += "\n" + progressBar() + "\n\n🎯 GENERATION COMPLETE";
+      renderFinal();
       return;
     }
 
-    const hero = pool.pop();
-    assigned.push(hero);
-    progress += Math.floor(100 / players.length);
+    let spinCount = 0;
+    const spin = setInterval(() => {
+      const fakeHero = pool[Math.floor(Math.random() * pool.length)];
 
-    typeLine(`✔ ${players[index].padEnd(10," ")} → ${hero}`, () => {
-      index++;
-      setTimeout(generateNext, 160);
-    });
+      result.innerText =
+        "⚙ GENERATING HERO...\n\n" +
+        assigned.map((h, i) => `✔ ${players[i]}  → ${h}`).join("\n") +
+        `\n\n⏳ ${players[index]}  → ${fakeHero}`;
+
+      spinCount++;
+      if (spinCount > 14) {
+        clearInterval(spin);
+        const hero = pool.pop();
+        assigned.push(hero);
+        index++;
+        setTimeout(spinPlayer, 280);
+      }
+    }, 90);
   }
 
-  setTimeout(generateNext, 500);
+  function renderFinal() {
+    let output = "⚙ GENERATING HERO...\n\n";
+    assigned.forEach((h, i) => {
+      output += `✔ ${players[i]}  → ${h}\n`;
+    });
+
+    output += "\n██████████ 100%\n\n🎯 GENERATION COMPLETE";
+    result.innerText = output;
+  }
+
+  spinPlayer();
 }
