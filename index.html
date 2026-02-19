@@ -2,23 +2,28 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>MLBB Cyber Toolkit</title>
+  <title>KS MLBB Cyber Toolkit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-  <h1 class="glitch" data-text="MLBB CYBER TOOLKIT">MLBB CYBER TOOLKIT</h1>
-  <p class="subtitle">⚡ Cyber Retro Gaming Tool ⚡</p>
-
-  <div class="menu">
-    <button onclick="showSection('wr')">⚙ Hitung Menang & Kalah</button>
-    <button onclick="showSection('target')">🎯 Target Winrate</button>
-    <button onclick="showSection('hero')">🎮 Random Hero</button>
+  <div class="logo-box">
+    <img src="logo.png" class="logo">
   </div>
 
-  <!-- HITUNG MENANG KALAH -->
+  <h1 class="glitch" data-text="KS CYBER TOOLKIT">KS CYBER TOOLKIT</h1>
+  <p class="subtitle">⚡ Elite Cyber Gaming Tools ⚡</p>
+
+  <div class="menu">
+    <button onclick="showSection('wr')">⚙ Hitung WR</button>
+    <button onclick="showSection('target')">🎯 Target WR</button>
+    <button onclick="showSection('hero')">🎮 Random Hero</button>
+    <button onclick="showSection('mlbb')">🔎 Cek ID MLBB</button>
+  </div>
+
+  <!-- WR -->
   <div class="section" id="wr">
     <h2>⚙ Hitung Menang & Kalah</h2>
     <input type="number" id="wrInput" placeholder="Winrate (%)">
@@ -27,7 +32,7 @@
     <div class="result" id="wrResult"></div>
   </div>
 
-  <!-- TARGET WINRATE -->
+  <!-- TARGET -->
   <div class="section" id="target">
     <h2>🎯 Target Winrate</h2>
     <input type="number" id="wrNow" placeholder="WR Sekarang (%)">
@@ -42,7 +47,7 @@
     <h2>🎮 Random Hero MLBB</h2>
 
     <select id="role">
-      <option value="all">All Hero</option>
+      <option value="all">All Role</option>
       <option value="tank">Tank</option>
       <option value="fighter">Fighter</option>
       <option value="assassin">Assassin</option>
@@ -51,9 +56,22 @@
       <option value="support">Support</option>
     </select>
 
-    <textarea id="players" placeholder="Nama pemain (1 per baris)&#10;contoh:&#10;Kayden&#10;Asep&#10;Budi"></textarea>
+    <textarea id="players" placeholder="Nama pemain (1 per baris)"></textarea>
     <button onclick="randomHero()">🎰 Generate Hero</button>
     <div class="result" id="heroResult"></div>
+  </div>
+
+  <!-- CEK ID MLBB -->
+  <div class="section" id="mlbb">
+    <h2>🔎 CEK ID & SERVER MLBB</h2>
+
+    <div class="ml-row">
+      <input type="number" id="mlID" placeholder="User ID">
+      <input type="number" id="mlServer" placeholder="Server">
+    </div>
+
+    <button onclick="cekIDML()">CEK SEKARANG</button>
+    <div class="result" id="mlResult"></div>
   </div>
 
 </div>
