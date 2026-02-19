@@ -162,54 +162,52 @@ function randomHero() {
 
   spinPlayer();
 }
-/* ================= CEK ID MLBB ================= */
+
+/* ================= CEK ID MLBB - FULL FIX ================= */
 
 async function cekIDML() {
-  const id = document.getElementById("mlID").value.trim();
-  const server = document.getElementById("mlServer").value.trim();
-  const result = document.getElementById("mlResult");
+const id = document.getElementById("mlID").value.trim();
+const server = document.getElementById("mlServer").value.trim();
+const result = document.getElementById("mlResult");
 
-  if (!id || !server) {
-    result.innerHTML = "❌ ID dan Server wajib diisi";
-    return;
-  }
+if (!id || !server) {
+result.innerHTML = "❌ ID dan Server wajib diisi";
+return;
+}
 
-  result.innerHTML = `<div class="loading"></div> 🔎 Scanning MLBB Database...`;
+result.innerHTML =   <div class="scan-box">   <div class="scan-line"></div>   <span>🔎 Scanning MLBB Database...</span>   </div>  ;
 
-  try {
-    const formData = new URLSearchParams();
-    formData.append("attribute_amount", "Weekly Pass");
-    formData.append("text-5f6f144f8ffee", id);
-    formData.append("text-1601115253775", server);
-    formData.append("quantity", 1);
-    formData.append("add-to-cart", 15145);
-    formData.append("product_id", 15145);
-    formData.append("variation_id", 4690783);
+try {
+const formData = new URLSearchParams();
+formData.append("attribute_amount", "Weekly Pass");
+formData.append("text-5f6f144f8ffee", id);
+formData.append("text-1601115253775", server);
+formData.append("quantity", 1);
+formData.append("add-to-cart", 15145);
+formData.append("product_id", 15145);
+formData.append("variation_id", 4690783);
 
-    // ===== CORS PROXY =====
-    const url = "https://corsproxy.io/?" + encodeURIComponent(
-      "https://moogold.com/wp-content/plugins/id-validation-new/id-validation-ajax.php"
-    );
+const res = await fetch("https://noisy-morning-709b.kaydenzolucy.workers.dev/", {  
+  method: "POST",  
+  headers: {  
+    "Content-Type": "application/x-www-form-urlencoded"  
+  },  
+  body: formData.toString()  
+});  
 
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-      },
-      body: formData.toString()
-    });
+if (!res.ok) throw new Error("Server tidak merespon");  
 
-    const data = await res.json();
+const data = await res.json();  
 
-    if (!data.message) {
-      result.innerHTML = "❌ ID atau Server tidak valid";
-    } else {
-      result.innerHTML =
-        "✅ DATA DITEMUKAN\n\n" +
-        data.message.replace(/<br\s*\/?>/gi, "\n");
-    }
+if (!data.message) {  
+  result.innerHTML = "❌ ID atau Server tidak valid";  
+} else {  
+  result.innerHTML =  
+    "✅ DATA DITEMUKAN\n\n" +  
+    data.message.replace(/<br\s*\/?>/gi, "\n");  
+}
 
-  } catch (err) {
-    result.innerHTML = "⚠ Gagal terhubung ke server\n" + err.message;
-  }
+} catch (err) {
+result.innerHTML = "⚠ Terjadi kesalahan koneksi\n" + err.message;
+}
 }
