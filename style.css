@@ -108,6 +108,10 @@ h1 {
   color: #cfd6ff;
   letter-spacing: 2px;
   font-weight: 600;
+
+  /* Tambahan yang baru */
+  font-size: 22px;     /* ubah sesuai ukuran yang diinginkan */
+  text-align: left;    /* rata kiri */
 }
 
 /* ===== INPUT ===== */
