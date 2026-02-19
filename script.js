@@ -162,3 +162,52 @@ function randomHero() {
 
   spinPlayer();
 }
+/* ================= CEK ID MLBB ================= */
+
+async function cekIDML() {
+  const id = document.getElementById("mlID").value.trim();
+  const server = document.getElementById("mlServer").value.trim();
+  const result = document.getElementById("mlResult");
+
+  if (!id || !server) {
+    result.innerText = "❌ ID dan Server wajib diisi";
+    return;
+  }
+
+  result.innerText = "🔎 Menghubungi server...\nMohon tunggu...";
+
+  try {
+    const formData = new URLSearchParams();
+    formData.append("attribute_amount", "Weekly Pass");
+    formData.append("text-5f6f144f8ffee", id);
+    formData.append("text-1601115253775", server);
+    formData.append("quantity", 1);
+    formData.append("add-to-cart", 15145);
+    formData.append("product_id", 15145);
+    formData.append("variation_id", 4690783);
+
+    const res = await fetch(
+      "https://moogold.com/wp-content/plugins/id-validation-new/id-validation-ajax.php",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: formData.toString()
+      }
+    );
+
+    const data = await res.json();
+
+    if (!data.message) {
+      result.innerText = "❌ ID atau Server tidak valid";
+    } else {
+      result.innerText =
+        "✅ DATA DITEMUKAN\n\n" +
+        data.message.replace(/<br\s*\/?>/gi, "\n");
+    }
+
+  } catch (err) {
+    result.innerText = "⚠ Terjadi kesalahan koneksi\n" + err.message;
+  }
+}
