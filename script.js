@@ -174,7 +174,7 @@ async function cekIDML() {
     return;
   }
 
-  result.innerText = "🔎 Menghubungi server...\nMohon tunggu...";
+  result.innerHTML = `<div class="loading"></div>\n🔎 Scanning MLBB Database...`;
 
   try {
     const formData = new URLSearchParams();
