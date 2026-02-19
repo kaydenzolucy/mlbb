@@ -1,4 +1,4 @@
-/* ===== GLOBAL ===== */
+2px===== GLOBAL ===== */
 
 * {
   box-sizing: border-box;
@@ -104,13 +104,13 @@ h1 {
 }
 
 .section h2 {
-  margin: 4px 0 14px;
+  margin: 4px 0 8px;
   color: #cfd6ff;
-  letter-spacing: 2px;
+  letter-spacing: 0px;
   font-weight: 600;
 
   /* Tambahan yang baru */
-  font-size: 22px;     /* ubah sesuai ukuran yang diinginkan */
+  font-size: 20px;     /* ubah sesuai ukuran yang diinginkan */
   text-align: left;    /* rata kiri */
 }
 
