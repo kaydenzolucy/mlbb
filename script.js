@@ -207,9 +207,19 @@ async function cekIDML() {
     if (!data.message) {
       result.innerText = "❌ ID atau Server tidak valid";
     } else {
-      result.innerText =
-        "✅ DATA DITEMUKAN\n\n" +
-        data.message.replace(/<br\s*\/?>/gi, "\n");
+      // Ambil nickname dari API
+      const message = data.message.replace(/<br\s*\/?>/gi, "\n").trim();
+      const nicknameLine = message.split("\n")[0] || "-";
+
+      // Format output rapi
+      const output = `
+User ID           : ${id}
+Server ID         : ${server}
+In-Game Nickname  : ${nicknameLine}
+Country           : ID
+      `.trim();
+
+      result.innerText = "✅ DATA DITEMUKAN\n\n" + output;
     }
 
   } catch (err) {
