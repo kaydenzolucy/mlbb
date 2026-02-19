@@ -5,6 +5,22 @@
   <title>KAYDENZO STORE Toolkit</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Style tambahan untuk iframe Dino */
+    #dinoGame {
+      width: 100%;
+      height: 400px; /* bisa diubah sesuai kebutuhan */
+      border: 2px solid #fff;
+      margin-top: 20px;
+      position: relative;
+      z-index: 10;
+    }
+    #dinoGame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
 </head>
 <body>
 
@@ -21,6 +37,7 @@
     <button onclick="showSection('target')">🎯 Target WR</button>
     <button onclick="showSection('hero')">🎮 Random Hero</button>
     <button onclick="showSection('mlbb')">🔎 Cek ID MLBB</button>
+    <button onclick="showSection('dino')">🦖 Dino Game</button>
   </div>
 
   <!-- WR -->
@@ -72,6 +89,15 @@
 
     <button onclick="cekIDML()">CEK SEKARANG</button>
     <div class="result" id="mlResult"></div>
+  </div>
+
+  <!-- DINO GAME -->
+  <div class="section" id="dino">
+    <h2>🦖 Mini Game Dino</h2>
+    <div id="dinoGame">
+      <iframe src="https://chromedino.com/" frameborder="0" scrolling="no" loading="lazy"></iframe>
+    </div>
+    <p style="text-align:center;">Klik game untuk mulai, bisa main langsung di sini!</p>
   </div>
 
 </div>
