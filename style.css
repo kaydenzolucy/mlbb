@@ -32,7 +32,7 @@ body {
 }
 
 .logo {
-  width: 115px;
+  width: 180px;
   filter: drop-shadow(0 10px 25px rgba(0,0,0,0.85));
   animation: float 5s ease-in-out infinite;
 }
