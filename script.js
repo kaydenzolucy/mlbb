@@ -163,7 +163,7 @@ function randomHero() {
   spinPlayer();
 }
 
-/* ================= CEK ID MLBB ================= */
+/* ================= CEK ID MLBB - FORMAT RAPIH TANPA COUNTRY ================= */
 
 async function cekIDML() {
   const id = document.getElementById("mlID").value.trim();
@@ -179,7 +179,6 @@ async function cekIDML() {
   result.innerHTML = `<div class="loading"></div>\n🔎 Scanning MLBB Database...`;
 
   try {
-    // Siapkan form data
     const formData = new URLSearchParams();
     formData.append("attribute_amount", "Weekly Pass");
     formData.append("text-5f6f144f8ffee", id);
@@ -189,14 +188,11 @@ async function cekIDML() {
     formData.append("product_id", 15145);
     formData.append("variation_id", 4690783);
 
-    // Ganti URL worker kamu di sini
     const workerURL = "https://noisy-morning-709b.kaydenzolucy.workers.dev/";
 
     const res = await fetch(workerURL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: formData.toString()
     });
 
@@ -206,21 +202,31 @@ async function cekIDML() {
 
     if (!data.message) {
       result.innerText = "❌ ID atau Server tidak valid";
-    } else {
-      // Ambil nickname dari API
-      const message = data.message.replace(/<br\s*\/?>/gi, "\n").trim();
-      const nicknameLine = message.split("\n")[0] || "-";
-
-      // Format output rapi
-      const output = `
-User ID           : ${id}
-Server ID         : ${server}
-In-Game Nickname  : ${nicknameLine}
-Country           : ID
-      `.trim();
-
-      result.innerText = "✅ DATA DITEMUKAN\n\n" + output;
+      return;
     }
+
+    // ===== PARSE DATA MESSAGE =====
+    const lines = data.message.replace(/<br\s*\/?>/gi, "\n").split("\n");
+
+    const info = {
+      userID: "",
+      serverID: "",
+      nickname: ""
+    };
+
+    lines.forEach(line => {
+      if (line.toLowerCase().includes("user id")) info.userID = line.split(":")[1]?.trim();
+      else if (line.toLowerCase().includes("server id")) info.serverID = line.split(":")[1]?.trim();
+      else if (line.toLowerCase().includes("in-game nickname")) info.nickname = line.split(":")[1]?.trim();
+    });
+
+    // tampilkan rapi tanpa country
+    result.innerText =
+`✅ DATA DITEMUKAN
+
+ User ID           : ${info.userID || "-"}
+ Server ID         : ${info.serverID || "-"}
+ In-Game Nickname  : ${info.nickname || "-"}`;
 
   } catch (err) {
     result.innerText = "⚠ Terjadi kesalahan koneksi\n" + err.message;
