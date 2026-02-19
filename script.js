@@ -163,51 +163,56 @@ function randomHero() {
   spinPlayer();
 }
 
-/* ================= CEK ID MLBB - FULL FIX ================= */
+/* ================= CEK ID MLBB ================= */
 
 async function cekIDML() {
-const id = document.getElementById("mlID").value.trim();
-const server = document.getElementById("mlServer").value.trim();
-const result = document.getElementById("mlResult");
+  const id = document.getElementById("mlID").value.trim();
+  const server = document.getElementById("mlServer").value.trim();
+  const result = document.getElementById("mlResult");
 
-if (!id || !server) {
-result.innerHTML = "❌ ID dan Server wajib diisi";
-return;
-}
+  if (!id || !server) {
+    result.innerText = "❌ ID dan Server wajib diisi";
+    return;
+  }
 
-result.innerHTML =   <div class="scan-box">   <div class="scan-line"></div>   <span>🔎 Scanning MLBB Database...</span>   </div>  ;
+  // Loading
+  result.innerHTML = `<div class="loading"></div>\n🔎 Scanning MLBB Database...`;
 
-try {
-const formData = new URLSearchParams();
-formData.append("attribute_amount", "Weekly Pass");
-formData.append("text-5f6f144f8ffee", id);
-formData.append("text-1601115253775", server);
-formData.append("quantity", 1);
-formData.append("add-to-cart", 15145);
-formData.append("product_id", 15145);
-formData.append("variation_id", 4690783);
+  try {
+    // Siapkan form data
+    const formData = new URLSearchParams();
+    formData.append("attribute_amount", "Weekly Pass");
+    formData.append("text-5f6f144f8ffee", id);
+    formData.append("text-1601115253775", server);
+    formData.append("quantity", 1);
+    formData.append("add-to-cart", 15145);
+    formData.append("product_id", 15145);
+    formData.append("variation_id", 4690783);
 
-const res = await fetch("https://noisy-morning-709b.kaydenzolucy.workers.dev/", {  
-  method: "POST",  
-  headers: {  
-    "Content-Type": "application/x-www-form-urlencoded"  
-  },  
-  body: formData.toString()  
-});  
+    // Ganti URL worker kamu di sini
+    const workerURL = "https://noisy-morning-709b.kaydenzolucy.workers.dev/";
 
-if (!res.ok) throw new Error("Server tidak merespon");  
+    const res = await fetch(workerURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: formData.toString()
+    });
 
-const data = await res.json();  
+    if (!res.ok) throw new Error("Server tidak merespon");
 
-if (!data.message) {  
-  result.innerHTML = "❌ ID atau Server tidak valid";  
-} else {  
-  result.innerHTML =  
-    "✅ DATA DITEMUKAN\n\n" +  
-    data.message.replace(/<br\s*\/?>/gi, "\n");  
-}
+    const data = await res.json();
 
-} catch (err) {
-result.innerHTML = "⚠ Terjadi kesalahan koneksi\n" + err.message;
-}
+    if (!data.message) {
+      result.innerText = "❌ ID atau Server tidak valid";
+    } else {
+      result.innerText =
+        "✅ DATA DITEMUKAN\n\n" +
+        data.message.replace(/<br\s*\/?>/gi, "\n");
+    }
+
+  } catch (err) {
+    result.innerText = "⚠ Terjadi kesalahan koneksi\n" + err.message;
+  }
 }
