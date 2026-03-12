@@ -1,107 +1,167 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>KAYDENZO STORE Toolkit</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Style tambahan untuk iframe Dino */
-    #dinoGame {
-      width: 100%;
-      height: 340px; /* bisa diubah sesuai kebutuhan */
-      border: 2px solid #fff;
-      margin-top: 20px;
-      position: relative;
-      z-index: 10;
-    }
-    #dinoGame iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-  </style>
+
+<meta charset="UTF-8">
+<title>KAYDENZO STORE Toolkit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+#dinoGame{
+width:100%;
+height:340px;
+border:2px solid #00eaff;
+margin-top:20px;
+}
+
+#dinoGame iframe{
+width:100%;
+height:100%;
+border:0;
+}
+
+</style>
+
 </head>
+
 <body>
 
 <div class="container">
-  <div class="logo-box">
-    <img src="logo.png" class="logo">
-  </div>
 
-  <h1 class="glitch" data-text="KAYDENZO STORE TOOLKIT">𝖐𝖆𝖞𝖉𝖊𝖓𝖟𝖔 𝖘𝖙𝖔𝖗𝖊 𝕿𝖔𝖔𝖑𝖐𝖎𝖙</h1>
-  <p class="subtitle">⚡ Mobile Legends Tools ⚡</p>
+<div class="logo-box">
+<img src="logo.png" class="logo">
+</div>
 
-  <div class="menu">
-    <button onclick="showSection('wr')">⚙ Hitung WR</button>
-    <button onclick="showSection('target')">🎯 Target WR</button>
-    <button onclick="showSection('hero')">🎮 Random Hero</button>
-    <button onclick="showSection('mlbb')">🔎 Cek ID MLBB</button>
-    <button onclick="showSection('dino')">🦖 Dino Game</button>
-  </div>
+<h1>KAYDENZO STORE TOOLKIT</h1>
+<p class="subtitle">⚡ MOBILE LEGENDS TOOLS ⚡</p>
 
-  <!-- WR -->
-  <div class="section" id="wr">
-    <h2>⚙ Hitung Menang & Kalah</h2>
-    <input type="number" id="wrInput" placeholder="Winrate (%)">
-    <input type="number" id="matchInput" placeholder="Total Match">
-    <button onclick="hitungWR()">Hitung</button>
-    <div class="result" id="wrResult"></div>
-  </div>
+<div class="menu">
 
-  <!-- TARGET -->
-  <div class="section" id="target">
-    <h2>🎯 Target Winrate</h2>
-    <input type="number" id="wrNow" placeholder="WR Sekarang (%)">
-    <input type="number" id="matchNow" placeholder="Total Match">
-    <input type="number" id="wrTarget" placeholder="WR Target (%)">
-    <button onclick="targetWR()">Hitung</button>
-    <div class="result" id="targetResult"></div>
-  </div>
+<button class="panel-btn" onclick="showSection('wr')">
+⚙ HITUNG WR
+</button>
 
-  <!-- RANDOM HERO -->
-  <div class="section" id="hero">
-    <h2>🎮 Random Hero MLBB</h2>
+<button class="panel-btn" onclick="showSection('target')">
+🎯 TARGET WR
+</button>
 
-    <select id="role">
-      <option value="all">All Role</option>
-      <option value="tank">Tank</option>
-      <option value="fighter">Fighter</option>
-      <option value="assassin">Assassin</option>
-      <option value="mage">Mage</option>
-      <option value="marksman">Marksman</option>
-      <option value="support">Support</option>
-    </select>
+<button class="panel-btn" onclick="showSection('hero')">
+🎮 RANDOM HERO
+</button>
 
-    <textarea id="players" placeholder="Nama pemain (1 per baris)"></textarea>
-    <button onclick="randomHero()">🎰 Generate Hero</button>
-    <div class="result" id="heroResult"></div>
-  </div>
+<button class="panel-btn" onclick="showSection('mlbb')">
+🔎 CEK ID MLBB
+</button>
 
-  <!-- CEK ID MLBB -->
-  <div class="section" id="mlbb">
-    <h2>🔎 CEK ID MLBB</h2>
+<button class="panel-btn" onclick="showSection('dino')">
+🦖 DINO GAME
+</button>
 
-    <div class="ml-row">
-      <input type="number" id="mlID" placeholder="User ID">
-      <input type="number" id="mlServer" placeholder="Server">
-    </div>
+</div>
 
-    <button onclick="cekIDML()">CEK SEKARANG</button>
-    <div class="result" id="mlResult"></div>
-  </div>
 
-  <!-- DINO GAME -->
-  <div class="section" id="dino">
-    <h2>🦖 Mini Game Dino</h2>
-    <div id="dinoGame">
-      <iframe src="https://chromedino.com/" frameborder="0" scrolling="no" loading="lazy"></iframe>
-    </div>
-    <p style="text-align:center;">Klik game untuk mulai</p>
-  </div>
+<!-- WR -->
+
+<div class="section" id="wr">
+
+<h2>⚙ Hitung Menang & Kalah</h2>
+
+<input type="number" id="wrInput" placeholder="Winrate (%)">
+<input type="number" id="matchInput" placeholder="Total Match">
+
+<button onclick="hitungWR()">Hitung</button>
+
+<div class="result" id="wrResult"></div>
+
+</div>
+
+
+<!-- TARGET -->
+
+<div class="section" id="target">
+
+<h2>🎯 Target Winrate</h2>
+
+<input type="number" id="wrNow" placeholder="WR Sekarang (%)">
+<input type="number" id="matchNow" placeholder="Total Match">
+<input type="number" id="wrTarget" placeholder="WR Target (%)">
+
+<button onclick="targetWR()">Hitung</button>
+
+<div class="result" id="targetResult"></div>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="section" id="hero">
+
+<h2>🎮 Random Hero MLBB</h2>
+
+<select id="role">
+
+<option value="all">All Role</option>
+<option value="tank">Tank</option>
+<option value="fighter">Fighter</option>
+<option value="assassin">Assassin</option>
+<option value="mage">Mage</option>
+<option value="marksman">Marksman</option>
+<option value="support">Support</option>
+
+</select>
+
+<textarea id="players" placeholder="Nama pemain (1 per baris)"></textarea>
+
+<button onclick="randomHero()">🎰 Generate Hero</button>
+
+<div class="result" id="heroResult"></div>
+
+</div>
+
+
+<!-- MLBB -->
+
+<div class="section" id="mlbb">
+
+<h2>🔎 CEK ID MLBB</h2>
+
+<div class="ml-row">
+
+<input type="number" id="mlID" placeholder="User ID">
+<input type="number" id="mlServer" placeholder="Server">
+
+</div>
+
+<button onclick="cekIDML()">CEK SEKARANG</button>
+
+<div class="result" id="mlResult"></div>
+
+</div>
+
+
+<!-- DINO -->
+
+<div class="section" id="dino">
+
+<h2>🦖 Mini Game Dino</h2>
+
+<div id="dinoGame">
+
+<iframe src="https://chromedino.com/" loading="lazy"></iframe>
+
+</div>
+
+<p style="text-align:center">Klik game untuk mulai</p>
+
+</div>
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
