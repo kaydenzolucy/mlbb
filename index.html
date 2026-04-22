@@ -1,167 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
-<meta charset="UTF-8">
-<title>KAYDENZO STORE Toolkit</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-#dinoGame{
-width:100%;
-height:340px;
-border:2px solid #00eaff;
-margin-top:20px;
-}
-
-#dinoGame iframe{
-width:100%;
-height:100%;
-border:0;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <title>KAYDENZO STORE Toolkit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#050a10">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="container">
+    <div class="logo-box">
+        <img src="logo.png" class="logo" alt="Logo">
+    </div>
 
-<div class="logo-box">
-<img src="logo.png" class="logo">
-</div>
+    <h1>KAYDENZO STORE</h1>
+    <p class="subtitle">⚡ SUPREME TOOLKIT ⚡</p>
 
-<h1>KAYDENZO STORE TOOLKIT</h1>
-<p class="subtitle">⚡ MOBILE LEGENDS TOOLS ⚡</p>
+    <div class="menu">
+        <button class="panel-btn" onclick="showSection('wr')">⚙️ HITUNG WR</button>
+        <button class="panel-btn" onclick="showSection('target')">🎯 TARGET WR</button>
+        <button class="panel-btn" onclick="showSection('hero')">🎮 RANDOM HERO</button>
+        <button class="panel-btn" onclick="showSection('mlbb')">🔎 CEK ID MLBB</button>
+        <button class="panel-btn" onclick="showSection('dino')">🦖 MINI GAME</button>
+    </div>
 
-<div class="menu">
+    <div class="section" id="wr">
+        <h2>⚙️ Hitung Winrate</h2>
+        <input type="number" id="wrInput" placeholder="Winrate (%)" inputmode="decimal">
+        <input type="number" id="matchInput" placeholder="Total Match" inputmode="numeric">
+        <button onclick="hitungWR()">KALKULASI</button>
+        <div class="result" id="wrResult">Hasil akan muncul di sini...</div>
+    </div>
 
-<button class="panel-btn" onclick="showSection('wr')">
-⚙ HITUNG WR
-</button>
+    <div class="section" id="target">
+        <h2>🎯 Target Winrate</h2>
+        <input type="number" id="wrNow" placeholder="WR Sekarang (%)" inputmode="decimal">
+        <input type="number" id="matchNow" placeholder="Total Match" inputmode="numeric">
+        <input type="number" id="wrTarget" placeholder="WR Target (%)" inputmode="decimal">
+        <button onclick="targetWR()">HITUNG TARGET</button>
+        <div class="result" id="targetResult">Hasil akan muncul di sini...</div>
+    </div>
 
-<button class="panel-btn" onclick="showSection('target')">
-🎯 TARGET WR
-</button>
+    <div class="section" id="hero">
+        <h2>🎮 Random Hero MLBB</h2>
+        <select id="role">
+            <option value="all">Semua Role</option>
+            <option value="tank">Tank</option>
+            <option value="fighter">Fighter</option>
+            <option value="assassin">Assassin</option>
+            <option value="mage">Mage</option>
+            <option value="marksman">Marksman</option>
+            <option value="support">Support</option>
+        </select>
+        <textarea id="players" placeholder="Masukkan nama pemain...&#10;Contoh:&#10;Kayden&#10;Gusion"></textarea>
+        <button onclick="randomHero()">🎰 GENERATE</button>
+        <div class="result" id="heroResult">Hero akan muncul di sini...</div>
+    </div>
 
-<button class="panel-btn" onclick="showSection('hero')">
-🎮 RANDOM HERO
-</button>
+    <div class="section" id="mlbb">
+        <h2>🔎 CEK ID MLBB</h2>
+        <div style="display: flex; gap: 10px;">
+            <input type="number" id="mlID" placeholder="User ID" inputmode="numeric">
+            <input type="number" style="width: 120px;" id="mlServer" placeholder="Server" inputmode="numeric">
+        </div>
+        <button onclick="cekIDML()">PERIKSA ID</button>
+        <div class="result" id="mlResult">Detail akun...</div>
+    </div>
 
-<button class="panel-btn" onclick="showSection('mlbb')">
-🔎 CEK ID MLBB
-</button>
-
-<button class="panel-btn" onclick="showSection('dino')">
-🦖 DINO GAME
-</button>
-
-</div>
-
-
-<!-- WR -->
-
-<div class="section" id="wr">
-
-<h2>⚙ Hitung Menang & Kalah</h2>
-
-<input type="number" id="wrInput" placeholder="Winrate (%)">
-<input type="number" id="matchInput" placeholder="Total Match">
-
-<button onclick="hitungWR()">Hitung</button>
-
-<div class="result" id="wrResult"></div>
-
-</div>
-
-
-<!-- TARGET -->
-
-<div class="section" id="target">
-
-<h2>🎯 Target Winrate</h2>
-
-<input type="number" id="wrNow" placeholder="WR Sekarang (%)">
-<input type="number" id="matchNow" placeholder="Total Match">
-<input type="number" id="wrTarget" placeholder="WR Target (%)">
-
-<button onclick="targetWR()">Hitung</button>
-
-<div class="result" id="targetResult"></div>
-
-</div>
-
-
-<!-- HERO -->
-
-<div class="section" id="hero">
-
-<h2>🎮 Random Hero MLBB</h2>
-
-<select id="role">
-
-<option value="all">All Role</option>
-<option value="tank">Tank</option>
-<option value="fighter">Fighter</option>
-<option value="assassin">Assassin</option>
-<option value="mage">Mage</option>
-<option value="marksman">Marksman</option>
-<option value="support">Support</option>
-
-</select>
-
-<textarea id="players" placeholder="Nama pemain (1 per baris)"></textarea>
-
-<button onclick="randomHero()">🎰 Generate Hero</button>
-
-<div class="result" id="heroResult"></div>
-
-</div>
-
-
-<!-- MLBB -->
-
-<div class="section" id="mlbb">
-
-<h2>🔎 CEK ID MLBB</h2>
-
-<div class="ml-row">
-
-<input type="number" id="mlID" placeholder="User ID">
-<input type="number" id="mlServer" placeholder="Server">
-
-</div>
-
-<button onclick="cekIDML()">CEK SEKARANG</button>
-
-<div class="result" id="mlResult"></div>
-
-</div>
-
-
-<!-- DINO -->
-
-<div class="section" id="dino">
-
-<h2>🦖 Mini Game Dino</h2>
-
-<div id="dinoGame">
-
-<iframe src="https://chromedino.com/" loading="lazy"></iframe>
-
-</div>
-
-<p style="text-align:center">Klik game untuk mulai</p>
-
-</div>
-
+    <div class="section" id="dino">
+        <h2>🦖 Dino Game</h2>
+        <div id="dinoGame">
+            <iframe src="https://chromedino.com/" loading="lazy" style="width:100%; height:300px; border:none;"></iframe>
+        </div>
+        <p style="font-size:11px; margin-top:10px; color:#7fe6ff;">Ketuk layar untuk melompat</p>
+    </div>
 </div>
 
 <script src="script.js"></script>
+<script>
+    // Tambahkan fungsi sederhana untuk toggle section jika belum ada di script.js
+    function showSection(id) {
+        // Sembunyikan semua section
+        document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+        // Tampilkan yang dipilih
+        const el = document.getElementById(id);
+        if(el) {
+            el.style.display = 'block';
+            window.scrollTo({ top: el.offsetTop - 20, behavior: 'smooth' });
+        }
+    }
+</script>
 
 </body>
 </html>
